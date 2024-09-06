@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
 
 const ApiData = () => {
   const [posts, setPosts] = useState([]);
@@ -14,7 +15,7 @@ const ApiData = () => {
         return response.json();
       })
       .then((data) => {
-        setPosts(data);
+        setPosts(data.slice(0, 10));
         setLoading(false);
       })
       .catch((error) => {
@@ -24,20 +25,41 @@ const ApiData = () => {
   }, []);
 
   if (loading) {
-    return <div style={{ color: 'red' }}>Loading...</div>;
+    return <Text style={styles.loading}>Loading...</Text>;
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <Text style={styles.error}>Error: {error.message}</Text>;
   }
 
   return (
-    <ul>
-      {posts.map((post) => (
-        <li key={post.id}>{post.title}</li>
-      ))}
-    </ul>
+    <FlatList
+      data={posts}
+      keyExtractor={(item) => item.id.toString()}
+      renderItem={({ item }) => (
+        <View style={styles.post}>
+          <Text style={styles.postTitle}>{item.title}</Text>
+        </View>
+      )}
+    />
   );
 };
+
+const styles = StyleSheet.create({
+  loading: {
+    color: 'red',
+  },
+  error: {
+    color: 'red',
+  },
+  post: {
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+  },
+  postTitle: {
+    fontSize: 16,
+  },
+});
 
 export default ApiData;
