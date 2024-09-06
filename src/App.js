@@ -1,6 +1,5 @@
 import logo from './logo.svg';
 import './App.css';
-import ApiData from './ApiData';
 
 function App() {
   return (
@@ -18,7 +17,6 @@ function App() {
         >
           Learn React
         </a>
-        <ApiData />
       </header>
     </div>
   );
