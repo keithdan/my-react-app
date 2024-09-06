@@ -19,8 +19,14 @@ function App() {
         >
           Learn React
         </a>
-        <ApiData />
-        <Form />
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div style={{ flex: 1 }}>
+            <ApiData />
+          </div>
+          <div style={{ flex: 1 }}>
+            <Form />
+          </div>
+        </div>
       </header>
     </div>
   );
