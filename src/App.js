@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import ApiData from './components/ApiData';
+import Form from './components/Form';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           Learn React
         </a>
         <ApiData />
+        <Form />
       </header>
     </div>
   );
