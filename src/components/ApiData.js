@@ -14,7 +14,7 @@ const ApiData = () => {
         return response.json();
       })
       .then((data) => {
-        setPosts(data);
+        setPosts(data.slice(0, 10));
         setLoading(false);
       })
       .catch((error) => {
